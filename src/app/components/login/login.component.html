@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="guest-form-card card">
+
+      <div class="card-header text-center">
+        <h2>Zaloguj się</h2>
+      </div>
+
+      <div class="card-body center">
+        <form [formGroup]="form">
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Hasło</mat-label>
+            <input matInput placeholder="Hasło" formControlName="password">
+          </mat-form-field>
+          
+          <!-- <div class="form-group">
+            <input type="checkbox" id="remember" name="remember" >
+            <label class="ml-1" for="remember">Zapamiętaj</label>
+          </div> -->
+          <br>
+          <mat-checkbox color="primary">Zapamiętaj</mat-checkbox>
+          <mat-divider></mat-divider><br>
+          <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onLogin()">Zaloguj się</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

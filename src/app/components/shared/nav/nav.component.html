@@ -1,0 +1,18 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">
+    <app-header></app-header>
+  </h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" [routerLink]="['/shop']">Sklep</a>
+     <a *ngIf="checkAdminRights()" class="p-2 text-dark" [routerLink]="['/addProduct']" href="#">Dodaj produkt</a>
+     <span *ngIf="checkLogin()"><a class="p-2 text-dark" [routerLink]="['/orderHistory']">Historia Zamówień</a></span>
+     <a class="p-2 text-dark" [routerLink]="['/help']">Pomoc</a>
+  </nav>
+  <span *ngIf="!checkLogin()">
+    <a class="btn btn-primary" [routerLink]="['/login']">Zaloguj</a>
+    <a class="btn btn-outline-secondary" [routerLink]="['/register']">Zarejestruj</a>
+  </span>
+  <span *ngIf="checkLogin()">
+    <a class="btn btn-outline-secondary" (click)="logOut()">Wyloguj</a>
+  </span>
+</div>

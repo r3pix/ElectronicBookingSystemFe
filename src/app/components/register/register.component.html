@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="guest-form-card card">
+
+      <div class="card-header text-center">
+        <h2>Zarejestruj się</h2>
+      </div>
+
+      <div class="card-body center">
+        <form [formGroup]="form" (ngSubmit)="onRegister()">
+          <mat-card-subtitle>Dane logowania</mat-card-subtitle><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Hasło</mat-label>
+            <input matInput placeholder="Hasło" formControlName="password">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Powtórz hasło</mat-label>
+            <input matInput placeholder="Powtórz hasło" formControlName="confirmPassword">
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+          <br><mat-card-subtitle>Dane osobowe</mat-card-subtitle><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Imię</mat-label>
+            <input matInput placeholder="Imię" formControlName="name">
+          </mat-form-field>          
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput placeholder="Nazwisko" formControlName="lastName">
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+          <br><mat-card-subtitle>Dane adresowe</mat-card-subtitle><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Ulica</mat-label>
+            <input matInput placeholder="Ulica" formControlName="street">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Numer</mat-label>
+            <input matInput placeholder="Numer" formControlName="number">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Kod pocztowy</mat-label>
+            <input matInput placeholder="00-000" formControlName="postalCode">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Miasto</mat-label>
+            <input matInput placeholder="Miasto" formControlName="city">
+          </mat-form-field>
+        <mat-divider></mat-divider><br>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" >Zarejestruj się</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [routerLink]="'/home'">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>System rezerwacji sal okolicznościowych</span>
+  <span class="spacer"></span>
+  <br>
+  <button mat-raised-button [routerLink]="'/login'"><mat-icon>login</mat-icon>Zaloguj</button>
+  &nbsp;
+  <button mat-raised-button [routerLink]="'/register'"><mat-icon>how_to_reg</mat-icon>Zarejestruj</button>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer mode="side" class="drawer">
+    <mat-action-list style="padding: 0;">
+      <hr style="margin-top: 0;">
+
+      <button mat-list-item (click)="null"><mat-icon>info</mat-icon>&nbsp;Opcja 1</button>
+      <hr>
+      <button mat-list-item (click)="null"><mat-icon>info</mat-icon>&nbsp;Opcja 2</button>
+      <hr>
+    </mat-action-list>
+  </mat-drawer>
+
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <app-footer></app-footer>
+        </div>
+      </div>
+  </div>
+</mat-drawer-container>

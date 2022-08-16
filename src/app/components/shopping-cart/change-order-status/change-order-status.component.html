@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md offset-md">
+      <div class="guest-form-card card">
+        <span id="print-section">
+            <div class="card-header text-center" >
+              <h2><strong>Zmień status</strong></h2>
+            </div>
+            <div class="text-center">
+                <div class="card-body">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Status</mat-label>
+                        <mat-select [formControl]="this.registerForm.get('status')">
+                          <mat-option [value]="0">
+                            Złożone
+                          </mat-option>
+                          <mat-option [value]="1">
+                            W trakcie realizacji
+                          </mat-option>
+                          <mat-option [value]="2">
+                            Zrealizowane
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                    <button class="btn btn-primary btn-block" [disabled]="!checkChange()" (click)="onSave()">Zapisz</button>
+                </div>
+        </div>
+         </span>
+      </div>
+    </div>
+  </div>
+  
