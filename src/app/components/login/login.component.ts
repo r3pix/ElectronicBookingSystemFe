@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginUserForm } from 'src/app/forms/user/login-user-form';
@@ -13,18 +14,17 @@ export class LoginComponent implements OnInit {
   form: LoginUserForm;
   model: LoginUserDto;
 
-  constructor(private builder: FormBuilder) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.form = new LoginUserForm();
   }
 
 
- /* onLogin(){
-    this.authService.SignIn(this.loginForm.get('email').value, this.loginForm.get('password').value);
-    console.log(this.loginForm.value);
+  onLogin(){
+    this.userService.logIn(new LoginUserDto(this.form.value));
   }
-*/
+
   login() {
     console.log(this.model)
   }

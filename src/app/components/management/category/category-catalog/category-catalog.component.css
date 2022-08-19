@@ -1,0 +1,5 @@
+table.mat-table {
+  display: table;
+  width: 100%;
+  min-width: 100%;
+}

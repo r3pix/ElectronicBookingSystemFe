@@ -1,3 +1,4 @@
+import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: ShoppingCartComponent },
   { path: 'addProduct', component: AddProductComponent },
   { path: 'orderHistory', component: OrderHistoryComponent },
+  { path: 'management/categories/catalog', component: CategoryCatalogComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }
 ]

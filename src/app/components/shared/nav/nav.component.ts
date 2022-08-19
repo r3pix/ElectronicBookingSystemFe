@@ -1,5 +1,5 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,35 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(public authService :AuthService) { }
+  userData: any;
+  constructor(public userService: UserService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  checkLogin(){
-    //console.log(localStorage.getItem('user'));
-    if(localStorage.getItem('user')!=null && localStorage.getItem('user')!='null'){
-      //console.log('true');
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+  isLogged(){
+    return this.userService.isLogged();
   }
 
   logOut(){
-    this.authService.SignOut();
-    this.authService.SignOut();
-  }
-
-  checkAdminRights(){
-    if(localStorage.getItem('isAdmin')==='true'){
-      return true;
-    }
-    else{
-      return false;
-    }
+    console.log();
+    this.userService.logOut();
   }
 
 }

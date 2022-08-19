@@ -1,6 +1,8 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AddUserForm } from 'src/app/forms/user/add-user.form';
+import { AddUserDto } from 'src/app/models/user/add-user.dto';
 
 
 /**
@@ -44,16 +46,16 @@ export class RegisterComponent implements OnInit {
 
   form: AddUserForm;
 
-  constructor(private builder: FormBuilder) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.form = new AddUserForm();
   }
 
- /* onRegister(){
-    this.authService.SignUp(this.registerForm.get('email').value, this.registerForm.get('password').value, this.registerForm.get('name').value, false);
+  onRegister(){
+    this.userService.register(new AddUserDto(this.form.value));
   }
-*/
+
 
   register() {
     console.log(this.form.value)

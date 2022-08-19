@@ -1,3 +1,4 @@
+<!-- trzeba dodac row, col zeby nie bulo oberflow -->
 <mat-toolbar color="primary">
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
@@ -8,9 +9,8 @@
   <span>System rezerwacji sal okolicznościowych</span>
   <span class="spacer"></span>
   <br>
-  <button mat-raised-button [routerLink]="'/login'"><mat-icon>login</mat-icon>Zaloguj</button>
-  &nbsp;
-  <button mat-raised-button [routerLink]="'/register'"><mat-icon>how_to_reg</mat-icon>Zarejestruj</button>
+  <!-- tu wrzucic komponent najlepiej z tymi buttonami cnie -->
+  <app-nav></app-nav>
 </mat-toolbar>
 
 <mat-drawer-container class="example-container" autosize>
@@ -18,7 +18,18 @@
     <mat-action-list style="padding: 0;">
       <hr style="margin-top: 0;">
 
-      <button mat-list-item (click)="null"><mat-icon>info</mat-icon>&nbsp;Opcja 1</button>
+      <button mat-list-item (click)="toggleDropdown()"><mat-icon>settings</mat-icon>&nbsp;Zarządzanie&nbsp;
+        <mat-icon *ngIf="isDropdown; else nope">expand_less</mat-icon>
+        <ng-template #nope>
+          <mat-icon>expand_more</mat-icon>
+        </ng-template>
+      </button>
+      <!-- tutaj wrzucic liste buttonów -->
+      <span *ngIf="isDropdown">
+        <button mat-list-item [routerLink]="'/management/categories/catalog'">&nbsp;&nbsp;&nbsp;<mat-icon>info</mat-icon>&nbsp;Kategorie</button>
+        <button mat-list-item (click)="null">&nbsp;&nbsp;&nbsp;<mat-icon>info</mat-icon>&nbsp;Opcja 2</button>
+      </span>
+      <!-- koniec listy buttonów -->
       <hr>
       <button mat-list-item (click)="null"><mat-icon>info</mat-icon>&nbsp;Opcja 2</button>
       <hr>
@@ -26,6 +37,7 @@
   </mat-drawer>
 
   <div class="container">
+    <!-- moze jakies newsy? -->
       <div class="row">
         <div class="col">
           <router-outlet></router-outlet>
@@ -34,7 +46,9 @@
 
       <div class="row">
         <div class="col">
-          <app-footer></app-footer>
+          <footer>
+            <app-footer></app-footer>
+          </footer>
         </div>
       </div>
   </div>

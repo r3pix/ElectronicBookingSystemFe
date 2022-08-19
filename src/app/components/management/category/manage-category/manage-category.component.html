@@ -3,7 +3,8 @@
     <div class="guest-form-card card">
 
       <div class="card-header text-center">
-        <h2>Zaloguj się</h2>
+        <h2 *ngIf="isEdit; else notEdit">Edytuj kategorię</h2>
+        <ng-template #notEdit><h2>Dodaj kategorię</h2></ng-template>
       </div>
 
       <div class="card-body center">
@@ -18,14 +19,10 @@
             <input matInput placeholder="Hasło" formControlName="password" type="password">
           </mat-form-field>
 
-          <!-- <div class="form-group">
-            <input type="checkbox" id="remember" name="remember" >
-            <label class="ml-1" for="remember">Zapamiętaj</label>
-          </div> -->
           <br>
           <mat-checkbox color="primary">Zapamiętaj</mat-checkbox>
           <mat-divider></mat-divider><br>
-          <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onLogin()">Zaloguj się</button>
+          <!-- <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onLogin()">Zaloguj się</button> -->
         </form>
       </div>
     </div>

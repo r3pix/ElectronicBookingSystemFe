@@ -1,19 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { NavComponent } from './components/shared/nav/nav.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductListComponent } from './components/shopping-cart/product-list/product-list.component';
 import { ProductItemComponent } from './components/shopping-cart/product-list/product-item/product-item.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
-import { AuthService } from "./services/auth.service";
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './components/shopping-cart/add-product/add-product/add-product.component';
@@ -34,14 +31,17 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { NavComponent } from './components/shared/nav/nav.component';
+import { ManageCategoryComponent } from './components/management/category/manage-category/manage-category.component';
+import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
-    NavComponent,
     ShoppingCartComponent,
     ProductListComponent,
     ProductItemComponent,
@@ -54,7 +54,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     PropertiesComponent,
     OrderPropertiesComponent,
     ChangeOrderStatusComponent,
-    HelpComponent
+    HelpComponent,
+    NavComponent,
+    ManageCategoryComponent,
+    CategoryCatalogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,18 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDividerModule,
     MatCheckboxModule
   ],
-   providers: [],
+   providers: [
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    },
+    JwtHelperService,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi   : true,
+    },
+   ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
