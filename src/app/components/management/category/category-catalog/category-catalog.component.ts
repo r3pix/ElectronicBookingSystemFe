@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
+import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
 
 @Component({
   selector: 'app-category-catalog',
@@ -10,9 +13,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class CategoryCatalogComponent implements OnInit {
 
-  constructor() { }
+  form: PageableBaseForm;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.form = new PageableBaseForm();
   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -29,4 +35,24 @@ export class CategoryCatalogComponent implements OnInit {
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
+
+  handleChanges($event){
+
+  }
+
+  handleSortChange(){
+
+  }
+
+  reloadData(){
+
+  }
+
+  onEdit(){
+
+  }
+
+  onAdd(){
+    this.router.navigate(['management','categories','manage']);
+  }
 }

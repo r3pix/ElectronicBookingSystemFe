@@ -3,3 +3,7 @@ table.mat-table {
   width: 100%;
   min-width: 100%;
 }
+
+.right{
+  float: right;
+}

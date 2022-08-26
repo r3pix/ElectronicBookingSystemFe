@@ -36,6 +36,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { ManageCategoryComponent } from './components/management/category/manage-category/manage-category.component';
 import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -77,7 +79,9 @@ import { CategoryCatalogComponent } from './components/management/category/categ
     MatListModule,
     MatInputModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
    providers: [
     {
