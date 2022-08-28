@@ -1,27 +1,21 @@
 <div class="row">
   <div class="col-md-4 offset-md-4">
-    <div class="guest-form-card card">
-
-      <div class="card-header text-center">
-        <h2 *ngIf="isEdit; else notEdit">Edytuj kategorię</h2>
-        <ng-template #notEdit><h2>Dodaj kategorię</h2></ng-template>
-      </div>
-
-      <div class="card-body center">
+    <mat-card>
+      <mat-card-header class="text-center">
+          <mat-card-title *ngIf="isEdit; else notEdit">Edytuj kategorię</mat-card-title>
+          <ng-template #notEdit><mat-card-title>Dodaj kategorię</mat-card-title></ng-template>
+      </mat-card-header>
+      <mat-card-content class="text-center">
         <form [formGroup]="form">
           <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" formControlName="email">
+            <mat-label>Nazwa</mat-label>
+            <input matInput placeholder="Nazwa" formControlName="name">
           </mat-form-field>
           <br>
-          <mat-form-field appearance="fill">
-            <mat-label>Hasło</mat-label>
-            <input matInput placeholder="Hasło" formControlName="password" type="password">
-          </mat-form-field>
           <mat-divider></mat-divider><br>
           <!-- <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onLogin()">Zaloguj się</button> -->
         </form>
-      </div>
-    </div>
+    </mat-card-content>
+    </mat-card>
   </div>
 </div>

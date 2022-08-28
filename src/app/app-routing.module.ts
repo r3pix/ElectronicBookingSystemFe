@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'addProduct', component: AddProductComponent },
   { path: 'orderHistory', component: OrderHistoryComponent },
   { path: 'management/categories/catalog', component: CategoryCatalogComponent},
-  { path: 'management/categories/manage', component: ManageCategoryComponent},
+  //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }
 ]

@@ -2,6 +2,14 @@ import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
+import { MatDialog } from '@angular/material/dialog';
+import { ManageCategoryComponent } from '../manage-category/manage-category.component';
+import { PaginationModel } from 'src/app/models/pagination-model';
+import { CategoryListModel } from 'src/app/models/category/category-list-model';
+import { CategoryService } from 'src/app/services/category.service';
+import { GetPageableCategoryDto } from 'src/app/models/category/get-pageable-category.dto';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { pairwise, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category-catalog',
@@ -15,44 +23,76 @@ export class CategoryCatalogComponent implements OnInit {
 
   form: PageableBaseForm;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog, private categoryService: CategoryService) { }
+
+  data: PaginationModel<CategoryListModel> = new PaginationModel<CategoryListModel>();
 
   ngOnInit(): void {
     this.form = new PageableBaseForm();
+    this.reloadData();
+
+    this.form.get('searchTerm').valueChanges.pipe(
+      distinctUntilChanged(),
+      pairwise() // gets a pair of old and new value
+    ).subscribe(([oldValue, newValue])=>{
+      console.log(oldValue, newValue)
+        // set previous value
+        this.form.get('searchTerm').patchValue(newValue);
+        this.reloadData();
+    })
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'actions'];
 
- ELEMENT_DATA: any[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  ];
 
   handleChanges($event){
+    //patch sort changes
+    this.form.get('pageNumber').patchValue($event.pageIndex);
+    this.form.get('pageSize').patchValue($event.pageSize);
 
+    //then reload
+    this.reloadData();
   }
 
-  handleSortChange(){
-
+  handleSortChange($event){
+    //patch sort changes
+    this.form.get('orderBy').patchValue($event.active);
+    if($event.direction === 'asc')
+      this.form.get('desc').patchValue(false);
+    else
+      this.form.get('desc').patchValue(true);
+    
+    //then reload
+    this.reloadData();
   }
 
   reloadData(){
-
+    this.categoryService.getPageableCategories(new GetPageableCategoryDto(this.form.value)).subscribe(x=>{
+      this.data = x.result;
+    });
   }
 
-  onEdit(){
+  onEdit(id: any, element: any){
+    const dialogRef = this.dialog.open(ManageCategoryComponent,{
+      minWidth: '1000px',
+      data: {id: id, element: element}
+    });
 
-  }
-
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === true)
+        this.reloadData()
+    })
+    }
+ 
   onAdd(){
-    this.router.navigate(['management','categories','manage']);
-  }
+    const dialogRef = this.dialog.open(ManageCategoryComponent,{
+      minWidth: '1000px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === true)
+        this.reloadData();
+    })
+    }
+
 }

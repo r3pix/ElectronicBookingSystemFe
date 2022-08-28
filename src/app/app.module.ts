@@ -15,7 +15,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './components/shopping-cart/add-product/add-product/add-product.component';
 import { OrderComponent } from './components/shopping-cart/order/order.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { OrderHistoryComponent } from './components/shopping-cart/order-history/order-history.component';
 import { MatTableModule } from '@angular/material/table';
 import { PropertiesComponent } from './components/shopping-cart/properties/properties.component';
@@ -38,6 +37,7 @@ import { ManageCategoryComponent } from './components/management/category/manage
 import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -81,7 +81,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatDividerModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
    providers: [
     {
