@@ -91,7 +91,7 @@
           <br *ngIf="isFileEdit">
           <!-- ng if dla editu bez pliku -->
            <button *ngIf="!isEdit" mat-raised-button color="primary" [disabled]="form.invalid || !file" (click)="save()">Zapisz</button>
-           <button *ngIf="isEdit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">Zapisz</button>
+           <button *ngIf="isEdit && !isFileEdit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">Zapisz</button>
            <button *ngIf="isFileEdit" mat-raised-button color="primary" [disabled]="!file" (click)="save()">Zapisz</button>
         </form>
     </mat-card-content>

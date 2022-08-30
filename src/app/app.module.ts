@@ -43,6 +43,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { RoomCatalogComponent } from './components/management/room/room-catalog/room-catalog.component';
 import { ManageRoomComponent } from './components/management/room/manage-room/manage-room.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { DecorationCatalogComponent } from './components/management/decoration/decoration-catalog/decoration-catalog.component';
+import { ManageDecorationComponent } from './components/management/decoration/manage-decoration/manage-decoration.component';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     SpacerComponent,
     RoomCatalogComponent,
     ManageRoomComponent,
+    DecorationCatalogComponent,
+    ManageDecorationComponent,
   ],
   imports: [
     BrowserModule,

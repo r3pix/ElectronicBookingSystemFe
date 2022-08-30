@@ -16,6 +16,7 @@ export class EditRoomDto{
     Object.assign(this, form);
   }
 
+  id: string;
   name: string;
   totalMaxPlaces: number;
   totalMaxTables: number;

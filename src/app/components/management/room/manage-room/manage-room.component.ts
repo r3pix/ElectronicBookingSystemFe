@@ -29,18 +29,20 @@ export class ManageRoomComponent implements OnInit {
   label: string ="";
   isFileEdit: boolean;
 
-  constructor(private dialogRef:MatDialogRef<ManageRoomComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any, isFileEdit: boolean}, private  roomService: RoomService, private categoryService: CategoryService) { }
+  constructor(private dialogRef:MatDialogRef<ManageRoomComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any, isFileEdit: boolean}, private  roomService: RoomService, private categoryService: CategoryService) {
+
+   }
 
   ngOnInit(): void {
     this.form = new RoomForm();
     if(this.data !== null)
     {
       this.isEdit = true;
-      this.isFileEdit =this.data.isFileEdit;
+      this.isFileEdit = this.data.isFileEdit;
     }
     else{
       this.isEdit = false;
-      this.isFileEdit =this.data.isFileEdit;
+      this.isFileEdit = false;
     }
 
     this.loadSelectData();
@@ -86,14 +88,19 @@ export class ManageRoomComponent implements OnInit {
   }
 
   save(){
-    if(this.isEdit){
+    if(this.isEdit && !this.isFileEdit){
       this.roomService.updateRoom(new EditRoomDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
       });
     }
-    else
+    else if(!this.isEdit)
     {
       this.roomService.addRoom(new AddRoomDto(this.form.value, this.file)).subscribe(x=>{
+        this.dialogRef.close(true);
+      });
+    }
+    else if(this.isFileEdit){
+      this.roomService.updateRoomPhoto(this.data.id, this.file).subscribe(x=>{
         this.dialogRef.close(true);
       });
     }

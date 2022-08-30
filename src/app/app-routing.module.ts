@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
 import { AddProductComponent } from './components/shopping-cart/add-product/add-product/add-product.component'
 import { OrderHistoryComponent } from './components/shopping-cart/order-history/order-history.component'
 import { HelpComponent } from './components/help/help.component'
+import { DecorationCatalogComponent } from './components/management/decoration/decoration-catalog/decoration-catalog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'orderHistory', component: OrderHistoryComponent },
   { path: 'management/categories/catalog', component: CategoryCatalogComponent},
   { path: 'management/rooms/catalog', component: RoomCatalogComponent},
+  { path: 'management/decorations/catalog', component: DecorationCatalogComponent},
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }

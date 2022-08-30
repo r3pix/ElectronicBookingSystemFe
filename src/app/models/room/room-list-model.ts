@@ -1,4 +1,5 @@
 export class RoomListModel{
+  id: string;
   name: string;
   totalMaxPlaces: number;
   totalMaxTables :number;

@@ -52,8 +52,12 @@ export class RoomService  extends BaseService{
     return this.httpClient.put(this.apiPath+this.controllerPath,dto);
    }
 
-   updateRoomPhoto(){
+   updateRoomPhoto(roomId: string, file: File){
+    let formData = new FormData();
+    formData.append("roomId",roomId);
+    formData.append("file",file);
 
+    return this.httpClient.put(this.apiPath+this.controllerPath+'/edit-picture',formData);
    }
 
 }

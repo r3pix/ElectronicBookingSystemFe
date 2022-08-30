@@ -1,25 +1,25 @@
-import { ManageRoomComponent } from './../manage-room/manage-room.component';
-import { RoomService } from './../../../../services/room.service';
-import { RoomListModel } from './../../../../models/room/room-list-model';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { distinctUntilChanged, pairwise } from 'rxjs/operators';
 import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
-import { GetPageableCategoryDto } from 'src/app/models/category/get-pageable-category.dto';
+import { DecorationListModel } from 'src/app/models/decoration/decoration-list-model';
+import { GetPageableDecorationDto } from 'src/app/models/decoration/get-pageable-decoration.dto';
 import { PaginationModel } from 'src/app/models/pagination-model';
+import { DecorationService } from 'src/app/services/decoration.service';
+import { ManageDecorationComponent } from '../manage-decoration/manage-decoration.component';
 
 @Component({
-  selector: 'app-room-catalog',
-  templateUrl: './room-catalog.component.html',
-  styleUrls: ['./room-catalog.component.css']
+  selector: 'app-decoration-catalog',
+  templateUrl: './decoration-catalog.component.html',
+  styleUrls: ['./decoration-catalog.component.css']
 })
-export class RoomCatalogComponent implements OnInit {
+export class DecorationCatalogComponent implements OnInit {
 
-  constructor(private router: Router, private dialog: MatDialog, private roomService: RoomService ) { }
+  constructor(private router: Router, private dialog: MatDialog, private decorationService: DecorationService ) { }
 
   form: PageableBaseForm;
-  data: PaginationModel<RoomListModel> = new PaginationModel<RoomListModel>();
+  data: PaginationModel<DecorationListModel> = new PaginationModel<DecorationListModel>();
 
   ngOnInit(): void {
     this.form = new PageableBaseForm();
@@ -36,7 +36,7 @@ export class RoomCatalogComponent implements OnInit {
     })
   }
 
-  displayedColumns: string[] = ['name','totalMaxPlaces','totalMaxTables','width','height','length','cost','categoryName', 'actions'];
+  displayedColumns: string[] = ['name','cost','actions'];
 
 
   handleChanges($event){
@@ -60,13 +60,13 @@ export class RoomCatalogComponent implements OnInit {
   }
 
   reloadData(){
-    this.roomService.getPageableRooms(new GetPageableCategoryDto(this.form.value)).subscribe(x=>{
+    this.decorationService.getPageableDecorations(new GetPageableDecorationDto(this.form.value)).subscribe(x=>{
       this.data = x.result;
     });
   }
 
   onEdit(element: any){
-    const dialogRef = this.dialog.open(ManageRoomComponent,{
+    const dialogRef = this.dialog.open(ManageDecorationComponent,{
       minWidth: '1000px',
       data: {id: element.id, element: element, isFileEdit: false}
     });
@@ -78,7 +78,7 @@ export class RoomCatalogComponent implements OnInit {
     }
 
     onFileEdit(element: any){
-      const dialogRef = this.dialog.open(ManageRoomComponent,{
+      const dialogRef = this.dialog.open(ManageDecorationComponent,{
         minWidth: '1000px',
         data: {id: element.id, element: element, isFileEdit: true}
       });
@@ -90,7 +90,7 @@ export class RoomCatalogComponent implements OnInit {
       }
 
   onAdd(){
-    const dialogRef = this.dialog.open(ManageRoomComponent,{
+    const dialogRef = this.dialog.open(ManageDecorationComponent,{
       minWidth: '1000px'
     });
 
@@ -99,5 +99,6 @@ export class RoomCatalogComponent implements OnInit {
         this.reloadData();
     })
     }
+
 
 }
