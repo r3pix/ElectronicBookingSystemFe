@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 export class CategoryForm extends FormGroup{
   constructor(){
     super({
-      id: new FormControl(null, [Validators.required]),
+      id: new FormControl(null),
       name: new FormControl(null, [Validators.required])
     });
   };

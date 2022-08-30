@@ -1,30 +1,25 @@
-import { Router } from '@angular/router';
-
+import { ManageRoomComponent } from './../manage-room/manage-room.component';
+import { RoomService } from './../../../../services/room.service';
+import { RoomListModel } from './../../../../models/room/room-list-model';
 import { Component, OnInit } from '@angular/core';
-import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
 import { MatDialog } from '@angular/material/dialog';
-import { ManageCategoryComponent } from '../manage-category/manage-category.component';
-import { PaginationModel } from 'src/app/models/pagination-model';
-import { CategoryListModel } from 'src/app/models/category/category-list-model';
-import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
+import { distinctUntilChanged, pairwise } from 'rxjs/operators';
+import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
 import { GetPageableCategoryDto } from 'src/app/models/category/get-pageable-category.dto';
-import { distinctUntilChanged } from 'rxjs/operators';
-import { pairwise, take } from 'rxjs/operators';
+import { PaginationModel } from 'src/app/models/pagination-model';
 
 @Component({
-  selector: 'app-category-catalog',
-  templateUrl: './category-catalog.component.html',
-  styleUrls: ['./category-catalog.component.css']
+  selector: 'app-room-catalog',
+  templateUrl: './room-catalog.component.html',
+  styleUrls: ['./room-catalog.component.css']
 })
+export class RoomCatalogComponent implements OnInit {
 
-
-
-export class CategoryCatalogComponent implements OnInit {
-
-  constructor(private router: Router, private dialog: MatDialog, private categoryService: CategoryService) { }
+  constructor(private router: Router, private dialog: MatDialog, private roomService: RoomService ) { }
 
   form: PageableBaseForm;
-  data: PaginationModel<CategoryListModel> = new PaginationModel<CategoryListModel>();
+  data: PaginationModel<RoomListModel> = new PaginationModel<RoomListModel>();
 
   ngOnInit(): void {
     this.form = new PageableBaseForm();
@@ -41,7 +36,7 @@ export class CategoryCatalogComponent implements OnInit {
     })
   }
 
-  displayedColumns: string[] = ['position', 'actions'];
+  displayedColumns: string[] = ['name','totalMaxPlaces','totalMaxTables','width','height','length','cost','categoryName', 'actions'];
 
 
   handleChanges($event){
@@ -65,13 +60,13 @@ export class CategoryCatalogComponent implements OnInit {
   }
 
   reloadData(){
-    this.categoryService.getPageableCategories(new GetPageableCategoryDto(this.form.value)).subscribe(x=>{
+    this.roomService.getPageableRooms(new GetPageableCategoryDto(this.form.value)).subscribe(x=>{
       this.data = x.result;
     });
   }
 
   onEdit(element: any){
-    const dialogRef = this.dialog.open(ManageCategoryComponent,{
+    const dialogRef = this.dialog.open(ManageRoomComponent,{
       minWidth: '1000px',
       data: {id: element.id, element: element}
     });
@@ -82,8 +77,20 @@ export class CategoryCatalogComponent implements OnInit {
     })
     }
 
+    onFileEdit(element: any){
+      const dialogRef = this.dialog.open(ManageRoomComponent,{
+        minWidth: '1000px',
+        data: {id: element.id, element: element, isFileEdit: true}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if(result === true)
+          this.reloadData()
+      })
+      }
+
   onAdd(){
-    const dialogRef = this.dialog.open(ManageCategoryComponent,{
+    const dialogRef = this.dialog.open(ManageRoomComponent,{
       minWidth: '1000px'
     });
 

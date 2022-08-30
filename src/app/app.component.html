@@ -32,8 +32,8 @@
         </button>
         <!-- tutaj wrzucic liste buttonów -->
         <span *ngIf="isDropdown">
-          <button mat-list-item [routerLink]="'/management/categories/catalog'">&nbsp;&nbsp;&nbsp;<mat-icon>info</mat-icon>&nbsp;Kategorie</button>
-          <button mat-list-item (click)="null">&nbsp;&nbsp;&nbsp;<mat-icon>info</mat-icon>&nbsp;Opcja 2</button>
+          <button mat-list-item [routerLink]="'/management/categories/catalog'"><app-spacer></app-spacer><mat-icon>category</mat-icon>&nbsp;Kategorie</button>
+          <button mat-list-item [routerLink]="'/management/rooms/catalog'"><app-spacer></app-spacer><mat-icon>location_on</mat-icon>&nbsp;Sale</button>
         </span>
         <!-- koniec listy buttonów -->
         <hr>

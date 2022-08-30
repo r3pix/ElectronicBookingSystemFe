@@ -38,6 +38,11 @@ import { CategoryCatalogComponent } from './components/management/category/categ
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SpacerComponent } from './components/shared/spacer/spacer.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { RoomCatalogComponent } from './components/management/room/room-catalog/room-catalog.component';
+import { ManageRoomComponent } from './components/management/room/manage-room/manage-room.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -60,6 +65,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     NavComponent,
     ManageCategoryComponent,
     CategoryCatalogComponent,
+    SpacerComponent,
+    RoomCatalogComponent,
+    ManageRoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +90,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCheckboxModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatAutocompleteModule
   ],
    providers: [
     {

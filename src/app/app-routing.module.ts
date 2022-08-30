@@ -1,3 +1,4 @@
+import { RoomCatalogComponent } from './components/management/room/room-catalog/room-catalog.component';
 import { ManageCategoryComponent } from './components/management/category/manage-category/manage-category.component';
 import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
 import { NgModule } from '@angular/core'
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'addProduct', component: AddProductComponent },
   { path: 'orderHistory', component: OrderHistoryComponent },
   { path: 'management/categories/catalog', component: CategoryCatalogComponent},
+  { path: 'management/rooms/catalog', component: RoomCatalogComponent},
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }
