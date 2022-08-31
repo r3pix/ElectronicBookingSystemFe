@@ -2,7 +2,7 @@ import { AddRoomDto } from './../../../../models/room/add-room.dto';
 import { SelectModel } from './../../../../models/select-model';
 import { RoomService } from './../../../../services/room.service';
 import { RoomForm } from './../../../../forms/room/room-form';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryForm } from 'src/app/forms/user/category.form';
 import { AddCategoryDto } from 'src/app/models/category/add-category.dto';
@@ -19,6 +19,9 @@ import { EditRoomDto } from 'src/app/models/room/edit-room.dto';
   styleUrls: ['./manage-room.component.css']
 })
 export class ManageRoomComponent implements OnInit {
+
+  @ViewChild('fileUpload')
+  fileUploadVariable: ElementRef;
 
   form: RoomForm;
   isEdit: boolean;
@@ -74,6 +77,7 @@ export class ManageRoomComponent implements OnInit {
   removeFile(){
     this.fileName = null;
     this.file = null;
+    this.fileUploadVariable.nativeElement.value = "";
   }
 
   displayFn(a: any): string {

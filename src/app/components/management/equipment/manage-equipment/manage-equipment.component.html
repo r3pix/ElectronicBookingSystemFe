@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <mat-card>
+      <mat-card-header class="text-center">
+          <mat-card-title *ngIf="isEdit; else notEdit">Edytuj wyposażenie</mat-card-title>
+          <ng-template #notEdit><mat-card-title>Dodaj wyposażenie</mat-card-title></ng-template>
+      </mat-card-header>
+      <mat-card-content class="text-center">
+        <form [formGroup]="form">
+          <span *ngIf="!isFileEdit">
+            <mat-form-field appearance="fill">
+              <mat-label>Nazwa</mat-label>
+              <input matInput placeholder="Nazwa" formControlName="name">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Koszt</mat-label>
+              <input matInput type="number" placeholder="Koszt" step="0.01" formControlName="cost">
+            </mat-form-field>
+          </span>
+          <br>
+          <span *ngIf="!isEdit || isFileEdit">
+            <!-- plik -->
+            <input type="file" class="file-input" (change)="onFileChange($event)" accept=".jpg,.jpeg,.png" #fileUpload>
+            <div class="file-upload">
+              {{fileName || "Nie wybrano pliku"}}
+              <button *ngIf="file" mat-mini-fab color="warn" class="upload-btn"
+                  (click)="removeFile()">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" class="upload-btn"
+                 (click)="fileUpload.click()">
+                   <mat-icon>attach_file</mat-icon>
+              </button>
+            </div>
+          </span>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <br *ngIf="isFileEdit">
+          <!-- ng if dla editu bez pliku -->
+           <button *ngIf="!isEdit" mat-raised-button color="primary" [disabled]="form.invalid || !file" (click)="save()">Zapisz</button>
+           <button *ngIf="isEdit && !isFileEdit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">Zapisz</button>
+           <button *ngIf="isFileEdit" mat-raised-button color="primary" [disabled]="!file" (click)="save()">Zapisz</button>
+        </form>
+    </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,3 +1,7 @@
+import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
+import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
+import { ServiceCatalogComponent } from './components/management/service/service-catalog/service-catalog.component';
+import { EquipmentCatalogComponent } from './components/management/equipment/equipment-catalog/equipment-catalog.component';
 import { RoomCatalogComponent } from './components/management/room/room-catalog/room-catalog.component';
 import { ManageCategoryComponent } from './components/management/category/manage-category/manage-category.component';
 import { CategoryCatalogComponent } from './components/management/category/category-catalog/category-catalog.component';
@@ -23,6 +27,10 @@ const routes: Routes = [
   { path: 'management/categories/catalog', component: CategoryCatalogComponent},
   { path: 'management/rooms/catalog', component: RoomCatalogComponent},
   { path: 'management/decorations/catalog', component: DecorationCatalogComponent},
+  { path: 'management/equipment/catalog', component: EquipmentCatalogComponent},
+  { path: 'management/services/catalog', component: ServiceCatalogComponent},
+  { path: 'management/users/catalog', component: UserCatalogComponent},
+  { path: 'management/users/details', component: UserDetailsComponent},
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }

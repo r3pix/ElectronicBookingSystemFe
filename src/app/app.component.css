@@ -8,7 +8,7 @@
 
  .example-container {
   width: 100%;
-  /* height: 93%; */
+  min-height: 60%;
 }
 
 .example-sidenav {

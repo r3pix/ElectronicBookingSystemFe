@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { UserListModel } from './../models/user/user-list-model';
+import { GetPageableUsersDto } from './../models/user/get-pageable-users.dto';
 import { LoginUserDto } from '../models/user/login-user.dto';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { BaseService } from './base.service';
@@ -5,6 +8,8 @@ import { AddUserDto } from '../models/user/add-user.dto';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { PaginationModel } from '../models/pagination-model';
+import {Response} from "../models/response"
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +31,9 @@ export class UserService extends BaseService {
   }
 
   register(dto: AddUserDto) {
-    this.httpClient.post(this.apiPath+this.controllerPath+'/register',dto).subscribe();
+    this.httpClient.post(this.apiPath+this.controllerPath+'/register',dto).subscribe(x=>{
+      this.router.navigate(['home']);
+    });
   }
 
   getUserData(jwt: string){
@@ -61,5 +68,19 @@ export class UserService extends BaseService {
   getName(){
     const data = { firstName: localStorage.getItem('firstName'), lastName: localStorage.getItem('lastName')}
     return data;
+  }
+
+  getPageableUsers(dto: GetPageableUsersDto) : Observable<Response<PaginationModel<UserListModel>>>{
+    let httpParams = new HttpParams();
+
+    if(dto.searchTerm != null)
+        httpParams = httpParams.append('searchTerm',dto.searchTerm);
+
+    httpParams = httpParams.append('pageSize', dto.pageSize);
+    httpParams = httpParams.append('pageNumber', dto.pageNumber);
+    httpParams = httpParams.append('orderBy', dto.orderBy);
+    httpParams = httpParams.append('desc',dto.desc);
+
+    return this.httpClient.get<Response<PaginationModel<UserListModel>>>(this.apiPath+this.controllerPath+'/pageable', {params: httpParams});
   }
 }

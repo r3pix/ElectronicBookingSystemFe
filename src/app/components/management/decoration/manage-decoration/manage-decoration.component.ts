@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DecorationForm } from 'src/app/forms/decoration/decoration-form';
@@ -15,13 +15,16 @@ import { DecorationService } from 'src/app/services/decoration.service';
 })
 export class ManageDecorationComponent implements OnInit {
 
+  @ViewChild('fileUpload')
+  fileUploadVariable: ElementRef;
+
   form: DecorationForm;
   isEdit: boolean;
   fileName: string;
   file: File;
   isFileEdit: boolean;
 
-  constructor(private dialogRef:MatDialogRef<ManageDecorationComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any, isFileEdit: boolean}, 
+  constructor(private dialogRef:MatDialogRef<ManageDecorationComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any, isFileEdit: boolean},
   private  decorationService: DecorationService) {
   }
 
@@ -47,6 +50,7 @@ export class ManageDecorationComponent implements OnInit {
   removeFile(){
     this.fileName = null;
     this.file = null;
+    this.fileUploadVariable.nativeElement.value = "";
   }
 
 

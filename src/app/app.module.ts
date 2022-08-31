@@ -45,6 +45,13 @@ import { ManageRoomComponent } from './components/management/room/manage-room/ma
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DecorationCatalogComponent } from './components/management/decoration/decoration-catalog/decoration-catalog.component';
 import { ManageDecorationComponent } from './components/management/decoration/manage-decoration/manage-decoration.component';
+import { ManageEquipmentComponent } from './components/management/equipment/manage-equipment/manage-equipment.component';
+import { EquipmentCatalogComponent } from './components/management/equipment/equipment-catalog/equipment-catalog.component';
+import { ManageServiceComponent } from './components/management/service/manage-service/manage-service.component';
+import { ServiceCatalogComponent } from './components/management/service/service-catalog/service-catalog.component';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
+import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
 
 
 @NgModule({
@@ -72,6 +79,12 @@ import { ManageDecorationComponent } from './components/management/decoration/ma
     ManageRoomComponent,
     DecorationCatalogComponent,
     ManageDecorationComponent,
+    ManageEquipmentComponent,
+    EquipmentCatalogComponent,
+    ManageServiceComponent,
+    ServiceCatalogComponent,
+    UserCatalogComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +109,8 @@ import { ManageDecorationComponent } from './components/management/decoration/ma
     MatSortModule,
     MatDialogModule,
     MatTooltipModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    TextFieldModule
   ],
    providers: [
     {
