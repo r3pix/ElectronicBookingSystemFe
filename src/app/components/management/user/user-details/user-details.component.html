@@ -1,1 +1,73 @@
-<p>user-details works!</p>
+<div class="row">
+  <div class="col-lg-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Dane użytkownika</mat-card-title><br><br>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="">
+          <div class="row">
+            <div class="col">
+              <mat-card-subtitle>Dane użytkownika</mat-card-subtitle>
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-card-subtitle>Dane adresowe</mat-card-subtitle>
+              <mat-form-field appearance="fill">
+                <mat-label>Ulica</mat-label>
+                <input matInput placeholder="Ulica" formControlName="">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Rola</mat-label>
+                <input matInput placeholder="Rola" formControlName="">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Numer</mat-label>
+                <input matInput placeholder="Numer" formControlName="">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-card-subtitle>Dane osobowe</mat-card-subtitle>
+              <mat-form-field appearance="fill">
+                <mat-label>Imię</mat-label>
+                <input matInput placeholder="Imię" formControlName="">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Kod pocztowy</mat-label>
+                <input matInput placeholder="Kod pocztowy 00-000" formControlName="">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Nazwisko</mat-label>
+                <input matInput placeholder="Nazwisko" formControlName="">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Miasto</mat-label>
+                <input matInput placeholder="Miasto" formControlName="">
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
