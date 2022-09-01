@@ -12,8 +12,6 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { LoginComponent } from './components/login/login.component'
 import { RegisterComponent } from './components/register/register.component'
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component'
-import { AddProductComponent } from './components/shopping-cart/add-product/add-product/add-product.component'
-import { OrderHistoryComponent } from './components/shopping-cart/order-history/order-history.component'
 import { HelpComponent } from './components/help/help.component'
 import { DecorationCatalogComponent } from './components/management/decoration/decoration-catalog/decoration-catalog.component';
 
@@ -22,8 +20,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: ShoppingCartComponent },
-  { path: 'addProduct', component: AddProductComponent },
-  { path: 'orderHistory', component: OrderHistoryComponent },
   { path: 'management/categories/catalog', component: CategoryCatalogComponent},
   { path: 'management/rooms/catalog', component: RoomCatalogComponent},
   { path: 'management/decorations/catalog', component: DecorationCatalogComponent},

@@ -3,6 +3,9 @@ import { Product } from 'src/app/models/product'
 import { EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { PropertiesComponent } from '../../properties/properties.component';
+import { RoomListModel } from 'src/app/models/room/room-list-model';
+import { FileService } from 'src/app/services/file.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-item',
@@ -11,31 +14,26 @@ import { PropertiesComponent } from '../../properties/properties.component';
 })
 export class ProductItemComponent implements OnInit {
 
-  @Input() productItem: Product;
-  @Output() addItemEvent = new EventEmitter<Product>();
-
-  @Input() addedToWishlist: boolean;
+  @Input() roomItem: RoomListModel;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog, private fileService: FileService, private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit() {
-  }
+  imageUrl;
 
-  handleAddToCart() {
-    // this.cartService.addProductToCart(this.productItem).subscribe(() => {
-    //   this.msg.sendMsg(this.productItem)
-    // }) poprawic ez
-    //console.log(this.productItem);
-    this.addItemEvent.emit(this.productItem);
+  ngOnInit() {
+    this.fileService.getFileAsUrlById(this.roomItem.fileId).subscribe(x=>{
+      let urlObject = URL.createObjectURL(x);
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(urlObject);
+    });
   }
 
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PropertiesComponent, {
       width: '600px',
-       data: {product: this.productItem},
+       data: {roomItem: this.roomItem, imageUrl: this.imageUrl},
     });
 
     dialogRef.afterClosed().subscribe(result => {

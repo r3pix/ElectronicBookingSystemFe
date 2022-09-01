@@ -1,9 +1,29 @@
 <div class="row">
   <div class="col-md-2">
-    moze filtry tu beda
+    <mat-card-subtitle>Filtry</mat-card-subtitle><br><br>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Szukaj</mat-label>
+            <input matInput placeholder="Szukaj" formControlName="searchTerm">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Kategorie</mat-label>
+            <mat-select formControlName="categoryIds" multiple>
+              <mat-option *ngFor="let option of options" [value]="option.id">{{option.label}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="col-md-10">
-    <app-product-list (addItemEvent)="addItem($event)" ></app-product-list>
+    <app-product-list [roomList]="roomList"></app-product-list>
   </div>
 </div>
 

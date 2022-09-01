@@ -8,6 +8,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 import {Response} from "../models/response"
+import { GetMainPageRoomsDto } from '../models/room/get-main-page-rooms.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,19 @@ export class RoomService  extends BaseService{
     formData.append("file",file);
 
     return this.httpClient.put(this.apiPath+this.controllerPath+'/edit-picture',formData);
+   }
+
+   getMainPageRooms(dto: GetMainPageRoomsDto) : Observable<Response<RoomListModel[]>>{
+    let httpParams = new HttpParams();
+    if(dto.searchTerm){
+      httpParams = httpParams.append('searchTerm', dto.searchTerm);
+    }
+    if(dto.categoryIds){
+      dto.categoryIds.forEach(x=> {
+        httpParams = httpParams.append('categoryIds',x);
+      }); 
+    }
+    return this.httpClient.get<Response<RoomListModel[]>>(this.apiPath+this.controllerPath+'/list', {params: httpParams});
    }
 
 }

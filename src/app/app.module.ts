@@ -13,9 +13,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddProductComponent } from './components/shopping-cart/add-product/add-product/add-product.component';
-import { OrderComponent } from './components/shopping-cart/order/order.component';
-import { OrderHistoryComponent } from './components/shopping-cart/order-history/order-history.component';
 import { MatTableModule } from '@angular/material/table';
 import { PropertiesComponent } from './components/shopping-cart/properties/properties.component';
 import { OrderPropertiesComponent } from './components/shopping-cart/order-properties/order-properties.component';
@@ -52,7 +49,6 @@ import { ServiceCatalogComponent } from './components/management/service/service
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
 import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
-import { FormControl } from '@angular/forms';
 import { ViewPictureComponent } from './components/shared/view-picture/view-picture.component';
 
 
@@ -66,9 +62,6 @@ import { ViewPictureComponent } from './components/shared/view-picture/view-pict
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    AddProductComponent,
-    OrderComponent,
-    OrderHistoryComponent,
     PropertiesComponent,
     OrderPropertiesComponent,
     ChangeOrderStatusComponent,

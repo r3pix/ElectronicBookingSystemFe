@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4" *ngFor="let product of productList">
-    <app-product-item [productItem]="product" (addItemEvent)="addItem($event)"  [addedToWishlist]="wishlist.indexOf(product.id) >= 0"></app-product-item>
+  <div class="col-md-4" *ngFor="let room of roomList">
+    <app-product-item [roomItem]="room"></app-product-item>
   </div>
 </div>

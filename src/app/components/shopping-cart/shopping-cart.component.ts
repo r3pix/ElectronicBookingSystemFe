@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from '@firebase/util';
 import { Product } from 'src/app/models/product';
-import { OrderComponent } from './order/order.component';
 import {Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Order } from 'src/app/models/order';
+import { MainPageRoomsForm } from 'src/app/forms/room/main-page-rooms.form';
+import { CategoryService } from 'src/app/services/category.service';
+import { SelectModel } from 'src/app/models/select-model';
+import { RoomListModel } from 'src/app/models/room/room-list-model';
+import { RoomService } from 'src/app/services/room.service';
+import { GetMainPageRoomsDto } from 'src/app/models/room/get-main-page-rooms.dto';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,36 +18,35 @@ import { Order } from 'src/app/models/order';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private categoryService: CategoryService, private roomService: RoomService) { }
 
-  productList: Product[] = [];
-  productMap: Map<string,number> = new Map();
+  form: MainPageRoomsForm;
+  options: SelectModel<string>[] = [];
+
+  roomList: RoomListModel[] = [];
 
   ngOnInit() {
-  }
+    this.form = new MainPageRoomsForm(); 
+    this.loadCategories();
 
-  addItem(event: any){
-    //console.log(event);
-    this.productList.push(event);
+    this.reloadData();
 
-  }
-
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(OrderComponent, {
-      width: '500px',
-       data: {productList: this.productList, productArray: null},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // this.animal = result;
+    this.form.valueChanges.subscribe(x=>{
+      this.reloadData();
     });
   }
 
-  onDelete(event: any){
-
+  loadCategories(){
+    this.categoryService.getForSelect().subscribe(x=>{
+      this.options = x.result;
+    });
   }
 
+  reloadData(){
+    this.roomService.getMainPageRooms(new GetMainPageRoomsDto(this.form.value)).subscribe(x=>{
+      this.roomList = x.result;
+    });
+  }
 }
 
 
