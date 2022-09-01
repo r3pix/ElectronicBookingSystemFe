@@ -1,3 +1,4 @@
+import { ViewPictureComponent } from './../../../shared/view-picture/view-picture.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -100,5 +101,15 @@ export class DecorationCatalogComponent implements OnInit {
     })
     }
 
+    openFile(element: any){
+      const dialogRef = this.dialog.open(ViewPictureComponent,{
+        minWidth: '500px',
+        data: {id: element.fileId}
+      })
 
+      dialogRef.afterClosed().subscribe(result => {
+        // if(result === true)
+          // this.reloadData();
+      })
+    }
 }

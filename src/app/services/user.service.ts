@@ -83,4 +83,8 @@ export class UserService extends BaseService {
 
     return this.httpClient.get<Response<PaginationModel<UserListModel>>>(this.apiPath+this.controllerPath+'/pageable', {params: httpParams});
   }
+
+  getUserById(id: string): Observable<Response<UserListModel>>{
+    return this.httpClient.get<Response<UserListModel>>(this.apiPath+this.controllerPath+`/${id}`);
+  }
 }

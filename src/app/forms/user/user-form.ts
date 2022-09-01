@@ -6,7 +6,8 @@ export class UserForm extends FormGroup{
   constructor(){
     super({
       id: new FormControl(null),
-      email: new FormControl(null)
+      email: new FormControl(null),
+      role: new FormControl(null),
     });
 
     this.addressForm = new AddressForm();

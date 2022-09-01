@@ -8,6 +8,7 @@ import { distinctUntilChanged, pairwise } from 'rxjs/operators';
 import { PageableBaseForm } from 'src/app/forms/pageable.base.form';
 import { GetPageableCategoryDto } from 'src/app/models/category/get-pageable-category.dto';
 import { PaginationModel } from 'src/app/models/pagination-model';
+import { ViewPictureComponent } from 'src/app/components/shared/view-picture/view-picture.component';
 
 @Component({
   selector: 'app-room-catalog',
@@ -100,4 +101,15 @@ export class RoomCatalogComponent implements OnInit {
     })
     }
 
+    openFile(element: any){
+      const dialogRef = this.dialog.open(ViewPictureComponent,{
+        minWidth: '500px',
+        data: {id: element.fileId}
+      })
+
+      dialogRef.afterClosed().subscribe(result => {
+        // if(result === true)
+          // this.reloadData();
+      })
+    }
 }

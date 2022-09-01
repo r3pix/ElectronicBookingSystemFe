@@ -52,6 +52,8 @@ import { ServiceCatalogComponent } from './components/management/service/service
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
 import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
+import { FormControl } from '@angular/forms';
+import { ViewPictureComponent } from './components/shared/view-picture/view-picture.component';
 
 
 @NgModule({
@@ -85,6 +87,7 @@ import { UserDetailsComponent } from './components/management/user/user-details/
     ServiceCatalogComponent,
     UserCatalogComponent,
     UserDetailsComponent,
+    ViewPictureComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,7 +113,7 @@ import { UserDetailsComponent } from './components/management/user/user-details/
     MatDialogModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    TextFieldModule
+    TextFieldModule,
   ],
    providers: [
     {

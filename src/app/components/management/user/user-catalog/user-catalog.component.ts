@@ -64,16 +64,8 @@ export class UserCatalogComponent implements OnInit {
   }
 
   onEdit(element: any){
-    // const dialogRef = this.dialog.open(ManageServiceComponent,{
-    //   minWidth: '1000px',
-    //   data: {id: element.id, element: element}
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result === true)
-    //     this.reloadData()
-    // })
-    }
+    this.router.navigate(['management','users','details',{id: element.id}]);
+  }
 
   onAdd(){
     // const dialogRef = this.dialog.open(ManageServiceComponent,{
