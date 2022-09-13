@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Product } from 'src/app/models/product'
 import { EventEmitter } from '@angular/core';
@@ -17,7 +19,7 @@ export class ProductItemComponent implements OnInit {
   @Input() roomItem: RoomListModel;
 
   constructor(
-    public dialog: MatDialog, private fileService: FileService, private sanitizer: DomSanitizer
+    public dialog: MatDialog, private fileService: FileService, private sanitizer: DomSanitizer, private router: Router
   ) { }
 
   imageUrl;
@@ -39,5 +41,9 @@ export class ProductItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // this.animal = result;
     });
+  }
+
+  handleBooking(){
+    this.router.navigate(['book', {id: this.roomItem.id}]);
   }
 }

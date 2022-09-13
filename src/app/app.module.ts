@@ -50,6 +50,10 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
 import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
 import { ViewPictureComponent } from './components/shared/view-picture/view-picture.component';
+import { BookRoomComponent } from './components/shopping-cart/book-room/book-room.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule ,MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -81,6 +85,7 @@ import { ViewPictureComponent } from './components/shared/view-picture/view-pict
     UserCatalogComponent,
     UserDetailsComponent,
     ViewPictureComponent,
+    BookRoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,6 +112,9 @@ import { ViewPictureComponent } from './components/shared/view-picture/view-pict
     MatTooltipModule,
     MatAutocompleteModule,
     TextFieldModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
    providers: [
     {
@@ -119,6 +127,7 @@ import { ViewPictureComponent } from './components/shared/view-picture/view-pict
       useClass: AuthInterceptor,
       multi   : true,
     },
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}
    ],
    bootstrap: [AppComponent]
 })
