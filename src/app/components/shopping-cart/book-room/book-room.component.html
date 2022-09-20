@@ -2,7 +2,7 @@
   <div class="col">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Rezerwacja sali xxxx</mat-card-title>
+        <mat-card-title>Rezerwacja sali <b>{{room.name}}</b></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
@@ -17,33 +17,33 @@
                           <input matInput placeholder="Nazwa wypożyczeani" formControlName="name" required>
                         </mat-form-field>
                         <div>
-                          <button mat-raised-button matStepperNext>Dalej</button>
+                          <button mat-raised-button matStepperNext [disabled]="this.form.get('name').invalid">Dalej</button>
                         </div>
                     </mat-step>
 
                     <mat-step>
                         <ng-template matStepLabel>Podaj liczbę miejsc</ng-template>
                         <mat-form-field appearance="fill">
-                          <mat-label>Address</mat-label>
+                          <mat-label>Liczba miejsc</mat-label>
                           <input matInput formControlName="totalPlaces" placeholder="1, 2, 3" type="number"
                                  required>
                         </mat-form-field>
                         <div>
                           <button mat-raised-button matStepperPrevious>Wstecz</button>
-                          <button mat-raised-button matStepperNext>Dalej</button>
+                          <button mat-raised-button matStepperNext [disabled]="this.form.get('totalPlaces').invalid">Dalej</button>
                         </div>
                     </mat-step>
 
                     <mat-step>
                       <ng-template matStepLabel>Podaj liczbę stołów</ng-template>
                       <mat-form-field appearance="fill">
-                        <mat-label>Address</mat-label>
+                        <mat-label>Liczba stołów</mat-label>
                         <input matInput formControlName="totalTables" placeholder="1, 2, 3" type="number"
                                required>
                       </mat-form-field>
                       <div>
                         <button mat-raised-button matStepperPrevious>Wstecz</button>
-                        <button mat-raised-button matStepperNext>Dalej</button>
+                        <button mat-raised-button matStepperNext [disabled]="this.form.get('totalTables').invalid">Dalej</button>
                       </div>
                     </mat-step>
 
@@ -52,14 +52,14 @@
                     <ng-template matStepLabel>Wybierz datę</ng-template>
                     <mat-form-field appearance="fill">
                       <mat-label>Wybierz datę rezerwacji</mat-label>
-                      <input matInput [matDatepicker]="picker" formControlName="date">
+                      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" formControlName="date">
                       <mat-hint>MM/DD/YYYY</mat-hint>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                     <div>
                       <button mat-raised-button matStepperPrevious>Wstecz</button>
-                      <button mat-raised-button matStepperNext>Dalej</button>
+                      <button mat-raised-button matStepperNext [disabled]="this.form.get('date').invalid">Dalej</button>
                     </div>
                   </mat-step>
 
@@ -80,7 +80,7 @@
                 </mat-autocomplete>
                 <mat-form-field appearance="fill">
                   <input type="text"
-                  placeholder="Wybierz kategorię"
+                  placeholder="Wybierz dekoracje"
                   aria-label="Number"
                   matInput
                   formControlName="decorationId"
@@ -88,7 +88,7 @@
                 </mat-form-field>
                 <div>
                   <button mat-raised-button matStepperPrevious>Wstecz</button>
-                  <button mat-raised-button matStepperNext>Dalej</button>
+                  <button mat-raised-button matStepperNext [disabled]="this.form.get('decorationId').invalid">Dalej</button>
                 </div>
               </mat-step>
 
@@ -108,7 +108,7 @@
                 </mat-autocomplete>
                 <mat-form-field appearance="fill">
                   <input type="text"
-                  placeholder="Wybierz kategorię"
+                  placeholder="Wybierz wyposażenie"
                   aria-label="Number"
                   matInput
                   formControlName="equipmentId"
@@ -116,7 +116,7 @@
                 </mat-form-field>
                 <div>
                   <button mat-raised-button matStepperPrevious>Wstecz</button>
-                  <button mat-raised-button matStepperNext>Dalej</button>
+                  <button mat-raised-button matStepperNext [disabled]="this.form.get('equipmentId').invalid">Dalej</button>
                 </div>
                 </mat-step>
 
@@ -136,7 +136,7 @@
                 </mat-autocomplete>
                 <mat-form-field appearance="fill">
                   <input type="text"
-                  placeholder="Wybierz kategorię"
+                  placeholder="Wybierz obsługę"
                   aria-label="Number"
                   matInput
                   formControlName="serviceId"
@@ -144,7 +144,7 @@
                 </mat-form-field>
                 <div>
                   <button mat-raised-button matStepperPrevious>Wstecz</button>
-                  <button mat-raised-button matStepperNext>Dalej</button>
+                  <button mat-raised-button matStepperNext [disabled]="this.form.get('serviceId').invalid">Dalej</button>
                 </div>
                 </mat-step>
               <!-- Selecty -->
@@ -161,40 +161,53 @@
                   </mat-form-field>
                   <div>
                     <button mat-raised-button matStepperPrevious>Wstecz</button>
-                    <button mat-raised-button matStepperNext>Dalej</button>
+                    <button mat-raised-button matStepperNext [disabled]="this.form.get('description').invalid">Dalej</button>
                   </div>
                 </mat-step>
 
                 <mat-step>
-                  <ng-template matStepLabel>Done</ng-template>
+                  <ng-template matStepLabel>Gotowe</ng-template>
                   <p>Zakończyłeś konfigurację sali.</p>
                   <div>
                     <button mat-raised-button matStepperPrevious>Wstecz</button>
                     <button mat-raised-button (click)="stepper.reset()">Zresetuj</button>
-                    <button mat-raised-button (click)="null" [disabled]="form.invalid">Zarezerwuj</button>
+                    <button mat-raised-button (click)="save()" [disabled]="form.invalid">Zarezerwuj</button>
                   </div>
                 </mat-step>
               </mat-stepper>
             </div>
             <div class="col">
-
+<!-- moze zdjecie sali? -->
               <div class="row">
-                <div class="col">
-                  wybrana fota<br>
-                  <img src="" alt="ala">
-                </div>
+                <span *ngIf="decorationUrl">
+                  <div class="col">
+                    Zdjęcie dekoracji<br>
+                    <img [src]="decorationUrl" alt="ala" width="300px">
+                  </div>
+                </span>
               </div>
 
               <div class="row">
-                <div class="col">
-                  askfjaf
-                </div>
+                <span *ngIf="equipmentUrl">
+                  <div class="col">
+                    Zdjęcie wyposażenia<br>
+                    <img [src]="equipmentUrl" alt="ala" width="300px">
+                  </div>
+                </span>
               </div>
 
+              <div class="row">
+                <span *ngIf="serviceDescription">
+                  <div class="col">
+                    Opis obsługi<br>
+                    {{serviceDescription}}
+                  </div>
+                </span>
+              </div>
             </div>
           </div>
         </form>
-        <h3>Suma: 123124</h3>
+        <h3>Suma PLN: <b>{{totalCost}}</b></h3>
       </mat-card-content>
     </mat-card>
   </div>

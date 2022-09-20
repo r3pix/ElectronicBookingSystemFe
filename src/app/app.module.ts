@@ -54,6 +54,8 @@ import { BookRoomComponent } from './components/shopping-cart/book-room/book-roo
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule ,MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import { BookingCatalogComponent } from './components/management/booking/booking-catalog/booking-catalog.component';
+import { CancelBookingComponent } from './components/management/booking/cancel-booking/cancel-booking.component';
 
 
 @NgModule({
@@ -86,6 +88,8 @@ import { MatMomentDateModule ,MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/ma
     UserDetailsComponent,
     ViewPictureComponent,
     BookRoomComponent,
+    BookingCatalogComponent,
+    CancelBookingComponent,
   ],
   imports: [
     BrowserModule,

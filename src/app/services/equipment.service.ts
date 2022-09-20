@@ -1,3 +1,4 @@
+import { EquipmentModel } from './../models/equipment/equipment-model';
 import { EditEquipmentDto } from './../models/equipment/edit-equipment.dto';
 import { AddEquipmentDto } from './../models/equipment/add-equipment.dto';
 import { GetPageableEquipmentDto } from './../models/equipment/get-pageable-equipment.dto';
@@ -8,6 +9,7 @@ import {Response} from "../models/response"
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PaginationModel } from '../models/pagination-model';
+import { SelectModel } from '../models/select-model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +53,13 @@ export class EquipmentService extends BaseService{
     formData.append("file",file);
 
     return this.httpClient.put(this.apiPath+this.controllerPath+'/edit-picture',formData);
+   }
+
+   getForSelect() : Observable<Response<SelectModel<string>[]>>{
+    return this.httpClient.get<Response<SelectModel<string>[]>>(this.apiPath+this.controllerPath+'/GetForSelect');
+  }
+
+   getEquipmentById(id: string) : Observable<Response<EquipmentModel>>{
+    return this.httpClient.get<Response<EquipmentModel>>(this.apiPath+this.controllerPath+`/${id}`);
    }
 }

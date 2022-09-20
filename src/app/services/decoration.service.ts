@@ -1,3 +1,4 @@
+import { DecorationModel } from './../models/decoration/decoration-model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +9,7 @@ import { BaseService } from './base.service';
 import {Response} from "../models/response"
 import { AddDecorationDto } from '../models/decoration/add-decoration.dto';
 import { EditDecorationDto } from '../models/decoration/edit-decoration.dto';
+import { SelectModel } from '../models/select-model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +53,13 @@ export class DecorationService extends BaseService {
     formData.append("file",file);
 
     return this.httpClient.put(this.apiPath+this.controllerPath+'/edit-picture',formData);
+   }
+
+   getForSelect() : Observable<Response<SelectModel<string>[]>>{
+    return this.httpClient.get<Response<SelectModel<string>[]>>(this.apiPath+this.controllerPath+'/GetForSelect');
+  }
+
+   getDecorationById(id: string): Observable<Response<DecorationModel>>{
+    return this.httpClient.get<Response<DecorationModel>>(this.apiPath+this.controllerPath+`/${id}`);
    }
 }

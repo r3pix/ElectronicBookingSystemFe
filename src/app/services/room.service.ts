@@ -69,9 +69,18 @@ export class RoomService  extends BaseService{
     if(dto.categoryIds){
       dto.categoryIds.forEach(x=> {
         httpParams = httpParams.append('categoryIds',x);
-      }); 
+      });
     }
     return this.httpClient.get<Response<RoomListModel[]>>(this.apiPath+this.controllerPath+'/list', {params: httpParams});
    }
 
+   getOccupiedDays(id: string) : Observable<Response<Date[]>>{
+    let params = new HttpParams();
+    params = params.append('id',id);
+    return this.httpClient.get<Response<Date[]>>(this.apiPath+this.controllerPath+'/booked-days', {params: params});
+   }
+
+   getRoomById(id: string) : Observable<Response<RoomListModel>>{
+    return this.httpClient.get<Response<RoomListModel>>(this.apiPath+this.controllerPath+`/${id}`);
+   }
 }

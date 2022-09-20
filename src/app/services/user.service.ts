@@ -45,6 +45,7 @@ export class UserService extends BaseService {
       localStorage.setItem('role',x.result.role);
       localStorage.setItem('firstName',x.result.name);
       localStorage.setItem('lastName',x.result.lastName);
+      localStorage.setItem('id',x.result.id);
     });
   }
 
@@ -54,6 +55,7 @@ export class UserService extends BaseService {
       localStorage.removeItem('role');
       localStorage.removeItem('firstName');
       localStorage.removeItem('lastName');
+      localStorage.removeItem('id');
       this.router.navigate(['home']);
   }
 

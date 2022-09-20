@@ -1,3 +1,4 @@
+import { ServiceModel } from './../models/service/service-model';
 import { EditServiceDto } from './../models/service/edit-service-dto';
 import { AddServiceDto } from './../models/service/add-service.dto';
 import { ServiceListModel } from './../models/service/service-list-model';
@@ -44,5 +45,9 @@ updateService(dto: EditServiceDto){
 
 getForSelect() : Observable<Response<SelectModel<string>[]>>{
   return this.http.get<Response<SelectModel<string>[]>>(this.apiPath+this.controllerPath+'/GetForSelect');
+}
+
+getServiceById(id: string) : Observable<Response<ServiceModel>>{
+  return this.http.get<Response<ServiceModel>>(this.apiPath+this.controllerPath+`/${id}`);
 }
 }

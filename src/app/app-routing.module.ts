@@ -1,3 +1,4 @@
+import { BookingCatalogComponent } from './components/management/booking/booking-catalog/booking-catalog.component';
 import { BookRoomComponent } from './components/shopping-cart/book-room/book-room.component';
 import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
 import { UserCatalogComponent } from './components/management/user/user-catalog/user-catalog.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'management/users/catalog', component: UserCatalogComponent},
   { path: 'management/users/details', component: UserDetailsComponent},
   { path: 'book', component: BookRoomComponent },
+  { path: 'management/booking/catalog', component: BookingCatalogComponent},
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
   { path: '**', component: PageNotFoundComponent }
