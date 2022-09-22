@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   isDropdown: boolean = false;
   title = 'Sale';
+
+  constructor(public userService: UserService){}
 
   toggleDropdown(){
     this.isDropdown = !this.isDropdown;

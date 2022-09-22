@@ -56,6 +56,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule ,MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import { BookingCatalogComponent } from './components/management/booking/booking-catalog/booking-catalog.component';
 import { CancelBookingComponent } from './components/management/booking/cancel-booking/cancel-booking.component';
+import { ForbiddenComponent } from './components/shared/forbidden/forbidden.component';
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { CancelBookingComponent } from './components/management/booking/cancel-b
     BookRoomComponent,
     BookingCatalogComponent,
     CancelBookingComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

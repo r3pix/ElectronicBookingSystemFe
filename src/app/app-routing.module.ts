@@ -1,3 +1,5 @@
+import { ForbiddenComponent } from './components/shared/forbidden/forbidden.component';
+import { AuthGuard } from './guards/auth.guard';
 import { BookingCatalogComponent } from './components/management/booking/booking-catalog/booking-catalog.component';
 import { BookRoomComponent } from './components/shopping-cart/book-room/book-room.component';
 import { UserDetailsComponent } from './components/management/user/user-details/user-details.component';
@@ -22,17 +24,72 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: ShoppingCartComponent },
-  { path: 'management/categories/catalog', component: CategoryCatalogComponent},
-  { path: 'management/rooms/catalog', component: RoomCatalogComponent},
-  { path: 'management/decorations/catalog', component: DecorationCatalogComponent},
-  { path: 'management/equipment/catalog', component: EquipmentCatalogComponent},
-  { path: 'management/services/catalog', component: ServiceCatalogComponent},
-  { path: 'management/users/catalog', component: UserCatalogComponent},
-  { path: 'management/users/details', component: UserDetailsComponent},
-  { path: 'book', component: BookRoomComponent },
-  { path: 'management/booking/catalog', component: BookingCatalogComponent},
+  { path: 'management/categories/catalog',
+    component: CategoryCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/rooms/catalog',
+    component: RoomCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/decorations/catalog',
+    component: DecorationCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/equipment/catalog',
+    component: EquipmentCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/services/catalog',
+    component: ServiceCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/users/catalog',
+    component: UserCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin']
+     }
+  },
+  { path: 'management/users/details',
+    component: UserDetailsComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin','User']
+     }
+  },
+  { path: 'book',
+    component: BookRoomComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin', 'User']
+    }
+  },
+  { path: 'management/booking/catalog',
+    component: BookingCatalogComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin','User']
+     }
+  },
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 

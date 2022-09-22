@@ -5,6 +5,7 @@
   <button mat-raised-button [routerLink]="'/register'"><mat-icon>how_to_reg</mat-icon>Zarejestruj</button>
 </span>
 <ng-template #logged>
+  <button mat-icon-button (click)="onDetails()"><mat-icon matTooltip="Dane konta">account_circle</mat-icon></button>
   {{ userService.getName().firstName }}  {{userService.getName().lastName}} &nbsp; &nbsp;
   <button mat-raised-button (click)="logOut()"><mat-icon>logout</mat-icon>Wyloguj</button>
 </ng-template>

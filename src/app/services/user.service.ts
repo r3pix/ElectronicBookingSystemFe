@@ -57,6 +57,7 @@ export class UserService extends BaseService {
       localStorage.removeItem('lastName');
       localStorage.removeItem('id');
       this.router.navigate(['home']);
+      window.location.reload();
   }
 
   isAdmin(){
@@ -65,6 +66,10 @@ export class UserService extends BaseService {
 
   isLogged(){
     return localStorage.getItem('token') !== null;
+  }
+
+  getRole(){
+    return localStorage.getItem('role');
   }
 
   getName(){
