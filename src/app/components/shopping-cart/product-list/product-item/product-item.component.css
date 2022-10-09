@@ -4,3 +4,14 @@
     margin-right: auto;
     width: 50%;
 }
+
+.imgg{
+    height: 300px;
+    width: 300px;
+}
+
+button {
+    height: auto;
+    width: 110px; 
+    align-items: center
+}
