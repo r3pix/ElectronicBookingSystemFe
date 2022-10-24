@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PaginationModel } from '../models/pagination-model';
 import {Response} from "../models/response"
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -17,23 +18,37 @@ import {Response} from "../models/response"
 export class UserService extends BaseService {
   public controllerPath: string = 'User';
 
-  constructor(public router : Router, public httpClient: HttpClient, public jwtService: JwtHelperService) {
+  constructor(public router : Router, public httpClient: HttpClient, public jwtService: JwtHelperService,
+    private toastService: ToastrService) {
     super();
   }
 
   logIn(dto: LoginUserDto) {
     this.httpClient.post<any>(this.apiPath+this.controllerPath+'/login',dto).subscribe(x=> {
-      const token = x.result;
-      localStorage.setItem('token',token);
-      this.getUserData(token);
+      if(x.isError === true){
+        this.toastService.error("Błędny login lub hasło", "Błąd logowania");
+      }
+      else{
+        const token = x.result;
+        localStorage.setItem('token',token);
+        this.getUserData(token);
+        this.toastService.success("Zalogowano poprawnie", "Logowanie pomyślne");
+        this.router.navigate(['home']);
+      }
     });
-    this.router.navigate(['home']);
+   
   }
 
   register(dto: AddUserDto) {
     this.httpClient.post(this.apiPath+this.controllerPath+'/register',dto).subscribe(x=>{
-      this.router.navigate(['home']);
-    });
+      if((x as any).isError == true){
+        this.toastService.error("Wystąpił błąd rejestracji", "Błąd rejestracji");
+      }
+      else{
+        this.toastService.success("Rejestracja pomyślna. Możesz się zalogować", "Rejestracja udana");
+        this.router.navigate(['home']);
+      }
+      });
   }
 
   getUserData(jwt: string){
@@ -56,6 +71,7 @@ export class UserService extends BaseService {
       localStorage.removeItem('firstName');
       localStorage.removeItem('lastName');
       localStorage.removeItem('id');
+      this.toastService.success("Udało się wylogować", "Wylogowano");
       this.router.navigate(['home']);
       window.location.reload();
   }

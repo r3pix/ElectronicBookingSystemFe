@@ -57,6 +57,8 @@ import { MatMomentDateModule ,MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/ma
 import { BookingCatalogComponent } from './components/management/booking/booking-catalog/booking-catalog.component';
 import { CancelBookingComponent } from './components/management/booking/cancel-booking/cancel-booking.component';
 import { ForbiddenComponent } from './components/shared/forbidden/forbidden.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -120,7 +122,10 @@ import { ForbiddenComponent } from './components/shared/forbidden/forbidden.comp
     TextFieldModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
    providers: [
     {
@@ -135,6 +140,6 @@ import { ForbiddenComponent } from './components/shared/forbidden/forbidden.comp
     },
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}
    ],
-   bootstrap: [AppComponent]
+   bootstrap: [AppComponent],
 })
 export class AppModule { }
