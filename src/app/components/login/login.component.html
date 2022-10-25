@@ -11,11 +11,13 @@
           <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="form.get('email').invalid">Pole jest wymagane oraz musi mieć format e-mail</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill">
             <mat-label>Hasło</mat-label>
             <input matInput placeholder="Hasło" formControlName="password" type="password">
+            <mat-error *ngIf="form.get('password').invalid">Pole jest wymagane</mat-error>
           </mat-form-field>
 
           <!-- <div class="form-group">

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AddServiceDto } from './../../../../models/service/add-service.dto';
 import { ServiceService } from './../../../../services/service.service';
 import { ServiceForm } from './../../../../forms/service/service-form';
@@ -15,7 +16,7 @@ export class ManageServiceComponent implements OnInit {
   form: ServiceForm;
   isEdit: boolean;
 
-  constructor(private dialogRef:MatDialogRef<ManageServiceComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any,}, private  serviceService: ServiceService) { }
+  constructor(private dialogRef:MatDialogRef<ManageServiceComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any,}, private  serviceService: ServiceService,private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.form = new ServiceForm();
@@ -33,12 +34,20 @@ export class ManageServiceComponent implements OnInit {
     if(this.isEdit){
       this.serviceService.updateService(new EditServiceDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się zaktualizować obsługę", "Zaktualizowano obsługę");
+      },
+      error=>{
+        this.toastService.error("Nie udało się zaktualizować obsługi", "Błąd obsługi");
       });
     }
     else
     {
       this.serviceService.addService(new AddServiceDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się dodać obsługę", "Dodano obsługę");
+      },
+      error=>{
+        this.toastService.error("Nie udało się zaktualizować obsługi", "Błąd operacji");
       });
     }
   }

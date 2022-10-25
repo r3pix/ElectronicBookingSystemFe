@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { BookingService } from './../../../services/booking.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileService } from 'src/app/services/file.service';
@@ -47,7 +48,7 @@ export class BookRoomComponent implements OnInit {
   filteredEquipments: Observable<SelectModel<string>[]>;
 
   constructor(private decorationService: DecorationService, private serviceService: ServiceService, private equipmentService: EquipmentService, private roomService: RoomService, private activatedRoute: ActivatedRoute,
-    private fileService: FileService, private sanitizer: DomSanitizer, private bookingService: BookingService, private router: Router) { }
+    private fileService: FileService, private sanitizer: DomSanitizer, private bookingService: BookingService, private router: Router, private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.form = new BookingForm();
@@ -205,6 +206,10 @@ export class BookRoomComponent implements OnInit {
   save(){
     this.bookingService.addBooking(new AddBookingDto(this.form.value)).subscribe(x=>{
       this.router.navigate(['home']);
+      this.toastService.success("Udało się zarezerwować salę", "Rezerwacja pomyślna");
+    },
+    error=>{
+      this.toastService.error("Nie udało się zarezerwować sali", "Rezerwacja nieudana");
     });
   }
 }

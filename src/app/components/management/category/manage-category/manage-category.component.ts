@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './../../../../services/category.service';
 import { CategoryForm } from './../../../../forms/user/category.form';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class ManageCategoryComponent implements OnInit {
   form: CategoryForm;
   isEdit: boolean;
 
-  constructor(private dialogRef:MatDialogRef<ManageCategoryComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any,}, private  categoryService: CategoryService) { }
+  constructor(private dialogRef:MatDialogRef<ManageCategoryComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any,}, private  categoryService: CategoryService, private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.form = new CategoryForm();
@@ -35,12 +36,20 @@ export class ManageCategoryComponent implements OnInit {
     if(this.isEdit){
       this.categoryService.updateCategory(new UpdateCategoryDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się zaktualizować kategorię", "Kategoria zaktualizowana");
+      },
+      error =>{
+        this.toastService.error("Nie udało się zaktualizować kategorii", "Błąd operacji");
       });
     }
     else
     {
       this.categoryService.addCategory(new AddCategoryDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się dodać kategorię", "Kategoria dodana");
+      },
+      error => {
+        this.toastService.error("Nie udało się dodać kategorii", "Błąd operacji");
       });
     }
   }

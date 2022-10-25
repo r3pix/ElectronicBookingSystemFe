@@ -10,6 +10,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Nazwa</mat-label>
             <input matInput placeholder="Nazwa" formControlName="name">
+            <mat-error *ngIf="form.get('name').invalid">Pole jest wymagane</mat-error>
           </mat-form-field>
           <br>
           <mat-divider></mat-divider><br>

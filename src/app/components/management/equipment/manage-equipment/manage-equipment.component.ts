@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AddEquipmentDto } from './../../../../models/equipment/add-equipment.dto';
 import { EquipmentForm } from './../../../../forms/equipment/equipment-form';
 import { EquipmentService } from './../../../../services/equipment.service';
@@ -22,7 +23,7 @@ export class ManageEquipmentComponent implements OnInit {
   isFileEdit: boolean;
 
   constructor(private dialogRef:MatDialogRef<ManageEquipmentComponent>, @Inject(MAT_DIALOG_DATA) public data:{id: string, element: any, isFileEdit: boolean},
-  private equipmentService: EquipmentService) {
+  private equipmentService: EquipmentService, private toastService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -55,17 +56,29 @@ export class ManageEquipmentComponent implements OnInit {
     if(this.isEdit && !this.isFileEdit){
       this.equipmentService.updateEquipment(new EditEquipmentDto(this.form.value)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się zaktualizować wyposażenie", "Zaktualizowano wyposażenie");
+      },
+      error => {
+        this.toastService.error("Nie udało się zaktualizować wyposażenia", "Błąd operacji");
       });
     }
     else if(!this.isEdit)
     {
       this.equipmentService.addEquipment(new AddEquipmentDto(this.form.value, this.file)).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się dodać wyposażenie", "Dodano wyposażenie");
+      },
+      error=>{
+        this.toastService.error("Nie udało się dodać wyposażenia", "Błąd operacji");
       });
     }
     else if(this.isFileEdit){
       this.equipmentService.updateEquipmentPhoto(this.data.id, this.file).subscribe(x=>{
         this.dialogRef.close(true);
+        this.toastService.success("Udało się zaktualizować obrazek wyposażenia", "Zaktualizowano obrazek wyposażenia");
+      },
+      error=>{
+        this.toastService.error("Nie udało się zaktualizować obrazka wyposażenia", "Błąd operacji");
       });
     }
   }

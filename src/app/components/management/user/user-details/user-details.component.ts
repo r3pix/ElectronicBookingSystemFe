@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { IdentityService } from './../../../../services/identity.service';
 import { AddressService } from './../../../../services/address.service';
 import { UserListModel } from './../../../../models/user/user-list-model';
@@ -15,7 +16,7 @@ import { UpdateAddressDto } from 'src/app/models/address/update-address.dto';
 })
 export class UserDetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private addressService: AddressService, private identityService: IdentityService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private addressService: AddressService, private identityService: IdentityService, private toastService: ToastrService) { }
 
   id: string;
   form: UserForm;
@@ -99,14 +100,24 @@ export class UserDetailsComponent implements OnInit {
   }
 
   updateIdentity(){
+    this.togglePersonalEdit();
     this.identityService.updateIdentity(new UpdateIdentityDto(this.form.identityForm.value)).subscribe(x=>{
-      window.location.reload();
+      this.toastService.success("Udało się zaktualizować dane użytkownika", "Zaktualizowano dane użytkownika");
+      this.loadUserData();
+    },
+    error=>{
+      this.toastService.error("Nie udało się zaktualizować danych użytkownika", "Błąd operacji");
     });
   }
 
   updateAddress(){
+    this.toggleAddressEdit();
     this.addressService.updateAddress(new UpdateAddressDto(this.form.addressForm.value)).subscribe(x=>{
-      window.location.reload();
+      this.toastService.success("Udało się zaktualizować dane adresowe użytkownika", "Zaktualizowano dane użytkownika");
+      this.loadUserData();
+    },
+    error=>{
+      this.toastService.error("Nie udało się zaktualizować danych użytkownika", "Błąd operacji");
     });
   }
 

@@ -25,29 +25,26 @@ export class UserService extends BaseService {
 
   logIn(dto: LoginUserDto) {
     this.httpClient.post<any>(this.apiPath+this.controllerPath+'/login',dto).subscribe(x=> {
-      if(x.isError === true){
-        this.toastService.error("Błędny login lub hasło", "Błąd logowania");
-      }
-      else{
+      console.log(x);
         const token = x.result;
         localStorage.setItem('token',token);
         this.getUserData(token);
         this.toastService.success("Zalogowano poprawnie", "Logowanie pomyślne");
         this.router.navigate(['home']);
-      }
+    },
+    error => {
+      this.toastService.error("Błędne dane logowania", "Błąd logowania");
     });
-   
+
   }
 
   register(dto: AddUserDto) {
     this.httpClient.post(this.apiPath+this.controllerPath+'/register',dto).subscribe(x=>{
-      if((x as any).isError == true){
-        this.toastService.error("Wystąpił błąd rejestracji", "Błąd rejestracji");
-      }
-      else{
         this.toastService.success("Rejestracja pomyślna. Możesz się zalogować", "Rejestracja udana");
         this.router.navigate(['home']);
-      }
+      },
+      error => {
+        this.toastService.error("Wystąpił błąd rejestracji", "Błąd rejestracji");
       });
   }
 
