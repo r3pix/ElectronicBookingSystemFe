@@ -68,7 +68,7 @@ export class DecorationCatalogComponent implements OnInit {
 
   onEdit(element: any){
     const dialogRef = this.dialog.open(ManageDecorationComponent,{
-      minWidth: '1000px',
+      minWidth: '300px',
       data: {id: element.id, element: element, isFileEdit: false}
     });
 
@@ -80,7 +80,7 @@ export class DecorationCatalogComponent implements OnInit {
 
     onFileEdit(element: any){
       const dialogRef = this.dialog.open(ManageDecorationComponent,{
-        minWidth: '1000px',
+        minWidth: '300px',
         data: {id: element.id, element: element, isFileEdit: true}
       });
 
@@ -92,7 +92,7 @@ export class DecorationCatalogComponent implements OnInit {
 
   onAdd(){
     const dialogRef = this.dialog.open(ManageDecorationComponent,{
-      minWidth: '1000px'
+      minWidth: '300px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -125,7 +125,11 @@ import { CommonModule } from '@angular/common';
     MatMomentDateModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }), // ToastrModule added
   ],
    providers: [
     {

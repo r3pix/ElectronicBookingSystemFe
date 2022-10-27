@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4 offset-md-4">
+  <div class="col">
     <mat-card>
       <mat-card-header class="text-center">
           <mat-card-title *ngIf="isEdit; else notEdit">Edytuj salę</mat-card-title>
@@ -8,76 +8,92 @@
       <mat-card-content class="text-center">
         <form [formGroup]="form">
           <span *ngIf="!isFileEdit">
-            <mat-form-field appearance="fill">
-              <mat-label>Nazwa</mat-label>
-              <input matInput placeholder="Nazwa" formControlName="name">
-              <mat-error *ngIf="form.get('name').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <!-- select z kategoriami xd -->
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
-              <span *ngIf="this.form.get('categoryId').value != null">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
-                  {{option.label}}
-                </mat-option>
-              </span>
-              <span *ngIf="this.form.get('categoryId').value == null" >
-                <mat-option *ngFor="let option of categories" [value]="option.id">
-                  {{option.label}}
-                </mat-option>
-              </span>
-            </mat-autocomplete>
-            <mat-form-field appearance="fill">
-              <input type="text"
-              placeholder="Wybierz kategorię"
-              aria-label="Number"
-              matInput
-              formControlName="categoryId"
-              [matAutocomplete]="auto">
-              <mat-error *ngIf="form.get('categoryId').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <!-- select z kategoriami xd -->
-            <mat-form-field appearance="fill">
-              <mat-label>Liczba miejsc</mat-label>
-              <input type="number" matInput placeholder="Liczba miejsc" formControlName="totalMaxPlaces">
-              <mat-error *ngIf="form.get('totalMaxPlaces').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Liczba stołów</mat-label>
-              <input type="number" matInput placeholder="Liczba stołów" formControlName="totalMaxTables">
-              <mat-error *ngIf="form.get('totalMaxTables').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Szerokość</mat-label>
-              <input type="number" matInput placeholder="Szerokość" formControlName="width">
-              <mat-error *ngIf="form.get('width').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Wysokość</mat-label>
-              <input type="number" matInput placeholder="Wysokość" formControlName="height">
-              <mat-error *ngIf="form.get('height').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Długość</mat-label>
-              <input type="number" matInput placeholder="Długość" formControlName="length">
-              <mat-error *ngIf="form.get('length').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Opis</mat-label>
-              <textarea matInput
-                        cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize"
-                        cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="5"
-                        formControlName="description"></textarea>
-            <mat-error *ngIf="form.get('description').invalid">Pole jest wymagane</mat-error>
-            </mat-form-field>
-            <br>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Nazwa</mat-label>
+                  <input matInput placeholder="Nazwa" formControlName="name">
+                  <mat-error *ngIf="form.get('name').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <!-- select z kategoriami xd -->
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
+                  <span *ngIf="this.form.get('categoryId').value != null">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+                      {{option.label}}
+                    </mat-option>
+                  </span>
+                  <span *ngIf="this.form.get('categoryId').value == null" >
+                    <mat-option *ngFor="let option of categories" [value]="option.id">
+                      {{option.label}}
+                    </mat-option>
+                  </span>
+                </mat-autocomplete>
+                <mat-form-field appearance="fill">
+                  <input type="text"
+                  placeholder="Wybierz kategorię"
+                  aria-label="Number"
+                  matInput
+                  formControlName="categoryId"
+                  [matAutocomplete]="auto">
+                  <mat-error *ngIf="form.get('categoryId').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Liczba miejsc</mat-label>
+                  <input type="number" matInput placeholder="Liczba miejsc" formControlName="totalMaxPlaces">
+                  <mat-error *ngIf="form.get('totalMaxPlaces').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Liczba stołów</mat-label>
+                  <input type="number" matInput placeholder="Liczba stołów" formControlName="totalMaxTables">
+                  <mat-error *ngIf="form.get('totalMaxTables').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Szerokość</mat-label>
+                  <input type="number" matInput placeholder="Szerokość" formControlName="width">
+                  <mat-error *ngIf="form.get('width').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Wysokość</mat-label>
+                  <input type="number" matInput placeholder="Wysokość" formControlName="height">
+                  <mat-error *ngIf="form.get('height').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Długość</mat-label>
+                  <input type="number" matInput placeholder="Długość" formControlName="length">
+                  <mat-error *ngIf="form.get('length').invalid">Pole jest wymagane</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="fill">
+                <mat-label>Opis</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="5"
+                          formControlName="description"></textarea>
+              <mat-error *ngIf="form.get('description').invalid">Pole jest wymagane</mat-error>
+              </mat-form-field>
+              </div>
+            </div>
             <mat-form-field appearance="fill">
               <mat-label>Koszt</mat-label>
               <input matInput type="number" placeholder="Koszt" step="0.01" formControlName="cost">
@@ -102,6 +118,7 @@
             <mat-error *ngIf="!file">Plik jest wymagany</mat-error>
           </span>
           <mat-divider></mat-divider>
+          <br>
           <br>
           <br *ngIf="isFileEdit">
           <!-- ng if dla editu bez pliku -->

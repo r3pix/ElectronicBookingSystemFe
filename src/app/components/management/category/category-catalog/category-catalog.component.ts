@@ -72,7 +72,7 @@ export class CategoryCatalogComponent implements OnInit {
 
   onEdit(element: any){
     const dialogRef = this.dialog.open(ManageCategoryComponent,{
-      minWidth: '1000px',
+      minWidth: '300px',
       data: {id: element.id, element: element}
     });
 
@@ -84,7 +84,7 @@ export class CategoryCatalogComponent implements OnInit {
 
   onAdd(){
     const dialogRef = this.dialog.open(ManageCategoryComponent,{
-      minWidth: '1000px'
+      minWidth: '300px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
