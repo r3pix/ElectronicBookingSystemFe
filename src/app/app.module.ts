@@ -59,6 +59,8 @@ import { CancelBookingComponent } from './components/management/booking/cancel-b
 import { ForbiddenComponent } from './components/shared/forbidden/forbidden.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { InvoiceDataComponent } from './components/invoice-data/invoice-data.component';
+import {NgxPrintModule} from 'ngx-print';
 
 
 @NgModule({
@@ -94,6 +96,7 @@ import { CommonModule } from '@angular/common';
     BookingCatalogComponent,
     CancelBookingComponent,
     ForbiddenComponent,
+    InvoiceDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +133,7 @@ import { CommonModule } from '@angular/common';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }), // ToastrModule added
+    NgxPrintModule
   ],
    providers: [
     {

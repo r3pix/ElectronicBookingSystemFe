@@ -1,0 +1,24 @@
+.center{
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+}
+
+table {
+    table-layout:fixed;
+    width: 1000px;
+    border: solid;
+}
+table td {
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: solid;
+}
+th{
+    border: solid;
+}
+.summary{
+    background-color: gray;
+}

@@ -73,6 +73,7 @@
             <th mat-header-cell *matHeaderCellDef> Akcje</th>
            <td mat-cell *matCellDef="let element">
               <button mat-icon-button matTooltip="Anuluj" (click)="onCancel(element)"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button matTooltip="Faktura" (click)="onInvoiceData(element)"><mat-icon>description</mat-icon></button>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

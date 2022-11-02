@@ -1,0 +1,79 @@
+<div class="row">
+    <button mat-icon-button matTooltip="Drukuj" [useExistingCss]="true" printTitle="Faktura" printSectionId="print" ngxPrint>
+        <mat-icon>
+            print
+        </mat-icon>
+    </button>
+    <span id="print">
+    <div class="col">
+        <h1>Faktura do wypozyczenia {{booking.name}}</h1>
+        <h2>Do zamówienia o id: {{booking.id}}</h2>
+        <hr>
+        Nabywca:
+        <br>
+        Email: {{booking.email}}
+        <br>
+        Imię: {{booking.firstName}}
+        <br>
+        Nazwisko: {{booking.lastName}}
+        <hr>
+        <h2>Nabyte Towary</h2>
+        <div class="center">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nazwa
+                        </th>
+                        <th>
+                            Cena
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Sala {{booking.roomName}}
+                        </td>
+                        <td>
+                            {{booking.roomCost}} PLN
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Dekoracje: {{booking.decorationName}}
+                        </td>
+                        <td>
+                            {{booking.decorationCost}} PLN
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Obsługa: {{booking.serviceName}}
+                        </td>
+                        <td>
+                            {{booking.serviceCost}} PLN
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wposazenie: {{booking.equipmentName}}
+                        </td>
+                        <td>
+                            {{booking.equipmentCost}} PLN
+                        </td>
+                    </tr>
+                    <tr class="summary">
+                        <td>
+                           <b>SUMA</b> 
+                        </td>
+                        <td>
+                           <b>{{booking.totalCost}} PLN</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </span>
+</div>

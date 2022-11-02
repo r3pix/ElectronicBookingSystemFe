@@ -194,7 +194,7 @@ export class BookRoomComponent implements OnInit {
 
   loadDecorationData(id: string){
     this.decorationService.getDecorationById(id).subscribe(result =>{
-      this.equipmentCost = result.result.cost;
+      this.decorationCost = result.result.cost;
       this.recalculateTotalCost();
       this.fileService.getFileAsUrlById(result.result.fileId).subscribe(file =>{
         let tempUrl = URL.createObjectURL(file);

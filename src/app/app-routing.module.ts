@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component'
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component'
 import { HelpComponent } from './components/help/help.component'
 import { DecorationCatalogComponent } from './components/management/decoration/decoration-catalog/decoration-catalog.component';
+import { InvoiceDataComponent } from './components/invoice-data/invoice-data.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -86,6 +87,14 @@ const routes: Routes = [
     data:{
       roles: ['Admin','User']
      }
+  },
+  {
+    path: 'management/booking/invoice',
+    component: InvoiceDataComponent,
+    canActivate: [AuthGuard],
+    data:{
+      roles: ['Admin', 'User']
+    }
   },
   //{ path: 'management/categories/manage', component: ManageCategoryComponent},
   { path: 'help', component: HelpComponent },

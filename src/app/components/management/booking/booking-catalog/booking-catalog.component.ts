@@ -76,4 +76,8 @@ export class BookingCatalogComponent implements OnInit {
       }
     })
   }
+
+  onInvoiceData(element: any){
+    this.router.navigate(['management','booking','invoice', {id: element.id}]);
+  }
 }

@@ -7,6 +7,7 @@ import { GetPageableBookingsDto } from './../models/booking/get-pageable-booking
 import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 import {Response} from "../models/response"
+import { BookingInvoiceModel } from '../models/booking/booking-invoice-model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class BookingService extends BaseService{
 
   cancelBooking(id: string){
     return this.httpClient.put(this.apiPath+this.controllerPath+'/cancel'+`/${id}`,null);
+  }
+
+  getBookingInvoiceData(id: any) :Observable<Response<BookingInvoiceModel>>{
+    return this.httpClient.get<Response<BookingInvoiceModel>>(this.apiPath+this.controllerPath+'/invoice-data'+`/${id}`);
   }
 
 }
