@@ -1,0 +1,64 @@
+<div class="row center">
+  <div class="col">
+    <h2>Opinie i komenarze</h2>
+    <!-- formularz dodania jest jest kurdeczka allowed -->
+    <div *ngIf="isAllowed">
+      <form [formGroup]="form">
+        <h3>Dodaj opinię</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Ocena</mat-label>
+          <mat-select formControlName="grade">
+            <mat-option [value]="1">
+              1
+            </mat-option>
+            <mat-option [value]="1.5">
+              1.5
+            </mat-option>
+            <mat-option [value]="2">
+              2
+            </mat-option>
+            <mat-option [value]="2.5">
+              2.5
+            </mat-option>
+            <mat-option [value]="3">
+              3
+            </mat-option>
+            <mat-option [value]="3.5">
+              3.5
+            </mat-option>
+            <mat-option [value]="4">
+              4.5
+            </mat-option>
+            <mat-option [value]="5">
+              5
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Komentarz</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    formControlName="comment"></textarea>
+        <mat-error *ngIf="form.get('comment').invalid">Pole jest wymagane</mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="save()" [disabled]="form.invalid">Zapisz</button>
+      </form>
+    </div>
+    <!-- inne opinie -->
+    <div class="row border" *ngFor="let opinion of opinions">
+      <div class="col">
+        <p class="small">{{opinion.email}},&nbsp;{{opinion.firstName}}&nbsp;{{opinion.createDate | date: 'short'}}</p>
+          Ocena: {{opinion.grade}}<br>
+          {{opinion.comment}}
+      </div>
+    </div>
+    <div *ngIf="opinions.length<1">
+      Brak opinii do wyświetlenia
+    </div>
+  </div>
+</div>

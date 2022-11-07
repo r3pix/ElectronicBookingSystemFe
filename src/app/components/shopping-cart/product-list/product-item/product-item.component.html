@@ -10,9 +10,10 @@
       <p class="card-text">{{ roomItem.description | slice: 0:80 }}</p>
      </span>
      <br>
-      <div class="row center"> 
+      <div class="row center">
           <button mat-raised-button color="primary" class="btn btn-sm btn-primary product-btn" (click)="handleBooking()">Zarezerwuj</button>
           <button mat-raised-button type="button" class="btn btn-sm btn-outline-secondary product-btn" (click)="openDialog()">Zobacz sczegóły</button>
+          <button mat-raised-button (click)="openOpinions()">Opinie</button>
       </div>
     </div>
 </div>

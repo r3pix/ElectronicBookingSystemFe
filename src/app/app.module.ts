@@ -61,6 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { InvoiceDataComponent } from './components/invoice-data/invoice-data.component';
 import {NgxPrintModule} from 'ngx-print';
+import { OpinionComponent } from './components/shopping-cart/opinion/opinion.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import {NgxPrintModule} from 'ngx-print';
     CancelBookingComponent,
     ForbiddenComponent,
     InvoiceDataComponent,
+    OpinionComponent,
   ],
   imports: [
     BrowserModule,

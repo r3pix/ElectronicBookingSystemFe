@@ -1,3 +1,4 @@
+import { OpinionComponent } from './../../opinion/opinion.component';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output } from '@angular/core';
@@ -36,6 +37,17 @@ export class ProductItemComponent implements OnInit {
     const dialogRef = this.dialog.open(PropertiesComponent, {
       width: '600px',
        data: {roomItem: this.roomItem, imageUrl: this.imageUrl},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.animal = result;
+    });
+  }
+
+  openOpinions(){
+    const dialogRef = this.dialog.open(OpinionComponent, {
+      width: '600px',
+       data: {roomId: this.roomItem.id},
     });
 
     dialogRef.afterClosed().subscribe(result => {
