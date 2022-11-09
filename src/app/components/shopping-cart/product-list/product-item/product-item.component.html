@@ -11,9 +11,9 @@
      </span>
      <br>
       <div class="row center">
-          <button mat-raised-button color="primary" class="btn btn-sm btn-primary product-btn" (click)="handleBooking()">Zarezerwuj</button>
+          <button *ngIf="isLogged()" mat-raised-button color="primary" class="btn btn-sm btn-primary product-btn" (click)="handleBooking()">Zarezerwuj</button>
           <button mat-raised-button type="button" class="btn btn-sm btn-outline-secondary product-btn" (click)="openDialog()">Zobacz sczegóły</button>
-          <button mat-raised-button (click)="openOpinions()">Opinie</button>
+          <button mat-raised-button class="btn btn-sm btn-outline-secondary product-btn" (click)="openOpinions()">Opinie</button>
       </div>
     </div>
 </div>

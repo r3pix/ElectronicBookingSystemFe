@@ -1,3 +1,4 @@
+import { UserService } from './../../../../services/user.service';
 import { OpinionComponent } from './../../opinion/opinion.component';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class ProductItemComponent implements OnInit {
   @Input() roomItem: RoomListModel;
 
   constructor(
-    public dialog: MatDialog, private fileService: FileService, private sanitizer: DomSanitizer, private router: Router
+    public dialog: MatDialog, private fileService: FileService, private sanitizer: DomSanitizer, private router: Router, private userService: UserService
   ) { }
 
   imageUrl;
@@ -30,6 +31,10 @@ export class ProductItemComponent implements OnInit {
       let urlObject = URL.createObjectURL(x);
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(urlObject);
     });
+  }
+
+  isLogged(){
+    return this.userService.isLogged();
   }
 
 
